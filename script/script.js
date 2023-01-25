@@ -28,6 +28,7 @@ function exibirQuizzHtml (quizz){
 
     mudarImagem(urlImg, id);
 }
+
 function sucessoObterQuizzes(callback){
     const quizzes = callback.data;
 
