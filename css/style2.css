@@ -1,3 +1,117 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
-    background-color: red;
+    background-color:  #E5E5E5;
+}
+header{
+    z-index: 3;
+    position: fixed;
+    left: 0px;
+    
+    top: 0px;
+    width: 100%;
+    height: 69px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EC362D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+header h1 {
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 43px;
+    color: #FFFFFF;
+}
+
+.perguntas-container{
+    width: 100%;
+    height: auto;
+    margin-top: 320px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pergunta{
+    width: 759px;
+    height: 676px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fundo-quizz{
+    list-style: none;
+    width: 100%;
+    
+    position: fixed;
+    left: 0;
+    top: 70px;
+
+    height: 230px;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url('https://lumiere-a.akamaihd.net/v1/images/original_1628718691_los-simpson---star_-_3_e73a2761.jpeg?region=0,95,1300,1300.png');
+    border-radius: 5px;
+    background-position:  center;
+    background-size: 90% auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+}
+
+.fundo-quizz h2{
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 46px;
+    font-family: 'Roboto', sans-serif;
+    color: #FFFFFF;
+}
+
+.titulo{
+    width: 690px;
+    height: 140px;
+    background-color: blue;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 23px;
+}
+
+.pergunta img{
+    width: 320px;
+    height: 175px;
+}
+
+.imagens-resposta{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-betwee; */
+}
+
+.imagens-resposta div{
+    width: 330px;
+    height: 184px;
+
+}
+
+.imagens-resposta p{
+    width: 320px;
+    height: 35px;
+
+    font: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.texto-pergunta{
+    width: 690px;
+    height: 138px;
+
+    background-color: blue;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 23px;
 }

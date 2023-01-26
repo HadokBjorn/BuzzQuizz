@@ -2,6 +2,8 @@ const url = "https://mock-api.driven.com.br/api/v4/buzzquizz";
 
 const backgroundImg = 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%)';
 
+let cardId = 0;
+
 function mudarImagem (urlImg, id){
     console.log(urlImg + " " + id);
     const imagemCss = document.getElementById(`${id}`);
@@ -20,9 +22,11 @@ function exibirQuizzHtml (quizz){
 
     const urlImg = quizz.image;
     
-    const template =  `<li class="card" id="${id}">
+    const template = `<a href="./pages/page2.html#${id}" target="_blank">
+                        <li class="card" id="${id}">
                             <p>${texto}</p>
-                        </li>`;
+                        </li>
+                    </a>`;
 
     dom.innerHTML += template;
 
@@ -48,6 +52,9 @@ function obterQuizzes(){
     promise.catch(erroObterQuizzes);
 }
 
+
 obterQuizzes();
 
+
+// export default cardId;
 // tentando resolver bug imagem ampliada
