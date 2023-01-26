@@ -66,6 +66,7 @@ header h1 {
 
     text-align: center;
     margin-bottom: 100px ;
+    z-index: 3;
 }
 
 .pergunta{
@@ -120,7 +121,7 @@ header h1 {
 
 .texto-pergunta{
     width: 690px;
-    height: 118px;
+    height: 98px;
 
     background-color: blue;
 
@@ -138,14 +139,17 @@ header h1 {
     font-weight: 400;
 }
 
-.resposta-certa{
+.certa{
     color: #009C22;
 }
-
-.resposta-errada{
-    color: #FF4B4B;
+.errada{
+    color: #EC362D;
 }
 
-.img-nao-escolhida{
-    opacity: 0.6;
+.selecionada{
+    opacity: 1;
+}
+
+.resposta-nao-selecionada{
+    /* Adicionar efeito de escurecido - lógica funciona*/
 }
