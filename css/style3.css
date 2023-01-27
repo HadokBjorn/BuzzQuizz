@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap');
+body{
+    width: 100%;
+    height: 100vh;
+    background: #fafafa;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+body::-webkit-scrollbar{
+    height: 0;
+    width: 0;
+}
+header{
+    z-index: 3;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 69px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EC362D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+header h1 {
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 43px;
+    color: #FFFFFF;
+}
+section{
+    width: 100vw;
+    margin-top:69px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+section p{
+    height: 89px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    background-color: transparent;
+}
+section button{
+    margin: 29px 24px;
+    width: -webkit-fill-available;
+    height: 54px;
+    background: #EC362D;
+    border-radius: 15px;
+    border: none;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #FFF5F4;
+}
+main{
+    width: 100%;
+    height: 256px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 9px;
+}
+main input{
+    box-sizing: border-box;
+    width: 95.46%;
+    height: 46px;
+    padding: 0 5px;
+
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color:#000000;
+    
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+}
+main input[type="number"]::-webkit-outer-spin-button,
+main input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+main input[type="number"] {
+    -moz-appearance: textfield;
+}
+main input::-webkit-input-placeholder{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: #BABABA;
+}
+@media (min-width: 321px){
+    main input{
+        padding: 0 14px;
+    }
+
+}
+@media(min-width: 600px){
+    section{
+        width: 600px;
+    }
+}
