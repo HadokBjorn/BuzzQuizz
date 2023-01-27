@@ -28,12 +28,18 @@ function adicionaDesempenhoNoHtml(titulo, texto, imagem){
                                     </div>
                                 </div>`;
 
+    const templateBotoes = `<div class="botoes-fim">
+                                <button class="reiniciar">Reiniciar Quizz</button>
+                                <button class="home">Voltar pra Home</button>
+                            </div>`
+
     const containerPerguntas = document.querySelector(".perguntas-container");
-    containerPerguntas.innerHTML += templateDesempenho;    
+    containerPerguntas.innerHTML += templateDesempenho + templateBotoes;    
+
 }
 
 function scrollFimDoQuizz(){
-    const fimQuizz = document.querySelector(".fim-do-quizz");
+    const fimQuizz = document.querySelector(".botoes-fim");
     fimQuizz.scrollIntoView({block: "end", behavior: "smooth"});
 }
 
