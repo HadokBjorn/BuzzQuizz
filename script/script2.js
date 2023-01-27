@@ -9,9 +9,88 @@ let tituloPergunta;
 let corPergunta;
 
 let desempenhoRespostas = [];
+let niveisDesempenho = [];
+let resultadoQuizz = 0;
 
 const backgroundImage = "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%),";
 
+
+function adicionaDesempenhoNoHtml(titulo, texto, imagem){
+    const templateDesempenho = `<div class="fim-do-quizz ">
+                                    <div class="texto-desempenho">
+                                        <p>${resultadoQuizz}% de acerto: ${titulo}</p>
+                                    </div>
+                                    <div class="texto-nivel">
+                                        <img src="${imagem}" alt="teste">
+                                        <div>
+                                            <p>${texto}</p>
+                                        </div>
+                                    </div>
+                                </div>`;
+
+    const containerPerguntas = document.querySelector(".perguntas-container");
+    containerPerguntas.innerHTML += templateDesempenho;    
+}
+
+function scrollFimDoQuizz(){
+    const fimQuizz = document.querySelector(".fim-do-quizz");
+    fimQuizz.scrollIntoView({block: "end", behavior: "smooth"});
+}
+
+function verificaFimQuizz(){
+    const imagemRespostas = document.querySelectorAll(".pergunta .imagens-respostas");
+    for(let i = 0; i < imagemRespostas.length; i++){
+        let naoRespondido = !(imagemRespostas[i].classList.contains("respondido"));
+        if (naoRespondido){
+            return null;
+        }
+    }
+
+    const nivelDesempenho = niveisDesempenho.filter(nivel => {
+        const minValue = Number(nivel.minValue);
+        if(minValue <= resultadoQuizz){
+            return true;
+        }else{
+            return false;
+        }
+    });
+
+    // o primeiro elemento corresponde a primeira vez que o nivel foi satisfeito
+    const nivelDesempenhoAtingido = niveisDesempenho[0];
+
+    const titulo = nivelDesempenhoAtingido.title;
+    const texto = nivelDesempenhoAtingido.text;
+    const imagem = nivelDesempenhoAtingido.image;
+
+    adicionaDesempenhoNoHtml(titulo, texto, imagem);
+    setTimeout(scrollFimDoQuizz, 2000);
+}
+
+function analisarDesempenho(){
+    const respostasCertas = desempenhoRespostas.filter( resposta => resposta == "true" );
+    const totalRespondido = Number(desempenhoRespostas.length);
+
+    const acertos = Number(respostasCertas.length);
+
+    const desempenho = (acertos * 100) / totalRespondido;
+
+    resultadoQuizz = Math.round(desempenho);
+
+    verificaFimQuizz();
+}
+
+function scrollProximaPergunta(){
+    const scrollPerguntas = document.querySelectorAll(".pergunta .imagens-respostas");
+    for(let i = 0; i < scrollPerguntas.length; i++){
+        let naoRespondido = !(scrollPerguntas[i].classList.contains("respondido"));
+        if(naoRespondido){
+            scrollPerguntas[i].parentNode.scrollIntoView({block: "end", behavior: "smooth"});
+            console.log("SCROLL DEFINIDO PARA: ");
+            console.log(scrollPerguntas[i].parentNode);
+            return null;
+        }
+    }
+}
 
 function verificarResposta(resposta){
     // se a resposta foi dada não há como mudar
@@ -36,14 +115,10 @@ function verificarResposta(resposta){
             perguntaSelecionada = perguntasDom[i];
         }
     }
-
     // procura a resposta certa e deixa seu texto verde
     const listaRespostas = perguntaSelecionada.lastElementChild.children;
     for(let j = 0; j < listaRespostas.length; j++){
-        // console.log(listaRespostas[0].classList[0]);
         if(listaRespostas[j].classList[0] == "true"){
-            // console.log("ACHEI A RESPOSTA CERTA!");
-            // console.log(listaRespostas[j].classList[0]);
             listaRespostas[j].classList.add("certa");
         }else{
             listaRespostas[j].classList.add("errada");
@@ -51,19 +126,14 @@ function verificarResposta(resposta){
     }
     for(let j = 0; j < listaRespostas.length; j++){
         // se não contem a classe selecionada adiciona filtro
-        console.log(listaRespostas[j].classList);
         if(!(listaRespostas[j].classList.contains("selecionada"))){
             listaRespostas[j].classList.add("resposta-nao-selecionada");
         }
     }
-    console.log(listaRespostas);
 
-    // com essa lista consigo descrever o desemppenho que o usuario teve no quizz
-    console.log(desempenhoRespostas);
+    setTimeout(scrollProximaPergunta, 500);
 
-
-
-   
+    analisarDesempenho();
 }
 
 function mudaFundoQuizz (urlImg){
@@ -96,6 +166,10 @@ function montarRespostas(resposta){
 }
 
 function adicionaNoHtml(){
+
+    niveisDesempenho = quizzSelecionado.levels;
+    console.log("NIVEIS DE DESEMPNHO DO QUIZZ SELECIONADO: ");
+    console.log(quizzSelecionado.levels);
     
 
     mudaFundoQuizz(quizzSelecionado.image);
@@ -141,6 +215,11 @@ function erroObterQuizzes(){
 }
 
 function obterQuizzes(){
+
+    // zerando desempenho respostas caso reinicio do quizz
+    desempenhoRespostas = [];
+    const perguntasContainer = document.querySelector(".perguntas-container");
+    perguntasContainer.innerHTML += "";
 
     const promise = axios.get(`${url}/quizzes`);
     promise.then(sucessoObterQuizzes);

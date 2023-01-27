@@ -55,6 +55,7 @@ header h1 {
     flex-direction: column;
     align-items: center;
     justify-content: end;
+    z-index: 3;
 }
 
 .fundo-quizz h2{
@@ -69,7 +70,8 @@ header h1 {
     z-index: 3;
 }
 
-.pergunta{
+.pergunta,
+.fim-do-quizz{
     width: 759px;
     height: auto;
     display: flex;
@@ -111,6 +113,30 @@ header h1 {
     margin-bottom: 30px;
 }
 
+.fim-do-quizz img{
+    width: 364px;
+    height: 273px;
+}
+
+.texto-nivel{
+    margin-top: -20px;
+    display: flex;
+    padding: 25px;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.texto-nivel p {
+    margin-top: -1px;
+    margin-left: 15px;
+
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+
+    color: #484848;
+}
+
 .imagens-respostas p{
     width: 300px;
     height: 35px;
@@ -119,11 +145,12 @@ header h1 {
     margin-top: -1px;
 }
 
-.texto-pergunta{
+.texto-pergunta,
+.texto-desempenho{
     width: 690px;
     height: 98px;
 
-    background-color: blue;
+    background-color: #EC362D;
 
     display: flex;
     align-items: center;
@@ -131,7 +158,8 @@ header h1 {
     margin-bottom: 15px;
 }
 
-.texto-pergunta p{
+.texto-pergunta p,
+.texto-desempenho p{
     font-family: 'Roboto', sans-serif;
     font-size: 23px;
     color: #FFFFFF;
@@ -151,5 +179,12 @@ header h1 {
 }
 
 .resposta-nao-selecionada{
-    /* Adicionar efeito de escurecido - lógica funciona*/
+    filter: contrast(200%);
+    filter: blur(1px);
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.escondido{
+    display: none;
 }
