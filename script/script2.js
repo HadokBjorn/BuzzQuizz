@@ -29,13 +29,21 @@ function adicionaDesempenhoNoHtml(titulo, texto, imagem){
                                 </div>`;
 
     const templateBotoes = `<div class="botoes-fim">
-                                <button class="reiniciar">Reiniciar Quizz</button>
-                                <button class="home">Voltar pra Home</button>
+                              
+                                    <button onclick="reiniciarQuizz()" class="reiniciar">Reiniciar Quizz</button>
+                                
+                                <a href="../index.html">
+                                    <button class="home">Voltar pra Home</button>
+                                 </a>
                             </div>`
 
     const containerPerguntas = document.querySelector(".perguntas-container");
     containerPerguntas.innerHTML += templateDesempenho + templateBotoes;    
 
+}
+
+function teste(){
+    console.log("BOTAO FUNCIONANDO NORMALLMENTE");
 }
 
 function scrollFimDoQuizz(){
@@ -61,6 +69,7 @@ function verificaFimQuizz(){
         }
     });
 
+    loadingAdd();
     // o primeiro elemento corresponde a primeira vez que o nivel foi satisfeito
     const nivelDesempenhoAtingido = niveisDesempenho[0];
 
@@ -69,7 +78,7 @@ function verificaFimQuizz(){
     const imagem = nivelDesempenhoAtingido.image;
 
     adicionaDesempenhoNoHtml(titulo, texto, imagem);
-    setTimeout(scrollFimDoQuizz, 2000);
+    scrollFimDoQuizz();
 }
 
 function analisarDesempenho(){
@@ -212,6 +221,7 @@ function sucessoObterQuizzes(callback){
     const quizzes = callback.data;
 
     quizzes.forEach(buscarQuizzSelecionado);
+    console.log("SUCESSO AO OBTER QUIZZES");
 
     adicionaNoHtml();
 }
@@ -223,14 +233,35 @@ function erroObterQuizzes(){
 function obterQuizzes(){
 
     // zerando desempenho respostas caso reinicio do quizz
-    desempenhoRespostas = [];
-    const perguntasContainer = document.querySelector(".perguntas-container");
-    perguntasContainer.innerHTML += "";
+    loadingAdd();
 
     const promise = axios.get(`${url}/quizzes`);
     promise.then(sucessoObterQuizzes);
     promise.catch(erroObterQuizzes);
 }
+
+function reiniciarQuizz (){
+    desempenhoRespostas = [];
+    const perguntasContainer = document.querySelector(".perguntas-container");
+    console.log(perguntasContainer);
+    perguntasContainer.innerHTML = "";
+
+    obterQuizzes();
+}
+
+function loadingAdd(){
+    const loadingGif = document.querySelector(".loading");
+    loadingGif.classList.remove("escondido")
+
+    setTimeout(loadingRemove, 2000);
+
+}
+
+function loadingRemove(){
+    const loadingGif = document.querySelector(".loading");
+    loadingGif.classList.add("escondido");
+}
+
 
 obterQuizzes();
 
