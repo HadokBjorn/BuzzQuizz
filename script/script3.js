@@ -206,9 +206,11 @@ function addHashQuestion(selectQuestions){
                     }
                 }else{
                     alert('Deve haver uma resposta correta e pelo menos uma resposta incorreta')
+                    objectQuestionsList.questions = [];
                 }
             }else{
                 alert(`A cor da pergunta ${i+1} deve ter o formato hexadecimal`)
+                objectQuestionsList.questions = [];
             }
         }else{
             color = selectQuestions[i].children[2].children[0].children[0].children[2].value;
@@ -258,9 +260,11 @@ function addHashQuestion(selectQuestions){
                     };
                 }else{
                     alert('Deve haver uma resposta correta e pelo menos uma resposta incorreta')
+                    objectQuestionsList.questions = [];
                 }
             }else{
                 alert(`A cor da pergunta ${i+1} deve ter o formato hexadecimal`)
+                objectQuestionsList.questions = [];
             }
         }
     }
@@ -269,7 +273,6 @@ function addHashQuestion(selectQuestions){
 function sendQuestion(){
     const allQuestions = document.querySelectorAll('.card-fechado').length + 1;
     const selectQuestions = document.querySelectorAll('.selected');
-    //const selectInputs = document.querySelectorAll('.selected input');
 
     if(selectQuestions.length === allQuestions) {
         addHashQuestion(selectQuestions)
