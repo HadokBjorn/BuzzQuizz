@@ -241,7 +241,7 @@ header h1 {
     .texto-nivel,
     .imagens-respostas,
     .imagens-respostas div{
-        width: 100%;
+        width: 90%;
         font-size: 18px;
     }
     .fundo-quizz h2{
@@ -251,13 +251,13 @@ header h1 {
 
     .texto-desempenho p,
     .texto-pergunta p{
-        height: 24px;
+        height: 35px;
         font-size: 17px;
     }
 
     .true img, .false img{
-        width: 100%;
-        height: 100%;
+        width: 110px;
+        height: 110px;
     }
 
     .texto-desempenho,
@@ -275,6 +275,7 @@ header h1 {
         width: 22%;
         height: auto;
         margin-bottom: 0px;
+        
     }
     .perguntas-container{
         margin-top: 240px;
@@ -286,15 +287,14 @@ header h1 {
 
     .imagens-respostas{
         width: 90%;
-        flex-direction: row;
-        flex-wrap: wrap;
         padding: 20px;
         height: auto;
+        flex-wrap: wrap;
     }
 
     .loading img{
         margin-top: 50%;
-        margin-left: 25%;
+        margin-left: 30%;
         width: 100px;
         height: 100px;
     }
@@ -314,4 +314,37 @@ header h1 {
     .fim-do-quizz{
         height: 500px;
     }
+}
+
+@media (max-width: 660px){
+    .true img, .false img{
+        width: 70px;
+        height: 70px;
+    }
+    .imagens-respostas{
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .true, .false{
+        width: 600px
+    }
+    .pergunta, 
+    .fim-do-quizz {
+        height: 90%;
+    }
+
+    .texto-nivel img{
+        width: 80%;
+        height: 50%;
+    }
+
+    .loading img{
+        margin-top: 30%;
+        margin-bottom: 30%;
+        width: 20px;
+        height: 20px;
+    }
+
 }
