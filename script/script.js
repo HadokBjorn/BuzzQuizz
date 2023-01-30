@@ -22,7 +22,7 @@ function exibirQuizzHtml (quizz){
 
     const urlImg = quizz.image;
     
-    const template = `<a href="./pages/page2.html#${id}" target="_blank">
+    const template = `<a href="./pages/page2.html#${id}">
                         <li class="card" id="${id}">
                             <p>${texto}</p>
                         </li>
@@ -34,6 +34,7 @@ function exibirQuizzHtml (quizz){
 }
 
 function sucessoObterQuizzes(callback){
+    loadingAdd();
     const quizzes = callback.data;
 
     console.log(quizzes);
@@ -50,6 +51,19 @@ function obterQuizzes(){
     const promise = axios.get(`${url}/quizzes`);
     promise.then(sucessoObterQuizzes);
     promise.catch(erroObterQuizzes);
+}
+
+function loadingAdd(){
+    const loadingGif = document.querySelector(".loading");
+    loadingGif.classList.remove("escondido")
+
+    setTimeout(loadingRemove, 2000);
+
+}
+
+function loadingRemove(){
+    const loadingGif = document.querySelector(".loading");
+    loadingGif.classList.add("escondido");
 }
 
 

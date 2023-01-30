@@ -92,6 +92,9 @@ function analisarDesempenho(){
     resultadoQuizz = Math.round(desempenho);
 
     verificaFimQuizz();
+
+    const testeApagar = document.querySelector("body");
+    console.log(testeApagar.innerHTML);
 }
 
 function scrollProximaPergunta(){
@@ -100,8 +103,6 @@ function scrollProximaPergunta(){
         let naoRespondido = !(scrollPerguntas[i].classList.contains("respondido"));
         if(naoRespondido){
             scrollPerguntas[i].parentNode.scrollIntoView({block: "end", behavior: "smooth"});
-            console.log("SCROLL DEFINIDO PARA: ");
-            console.log(scrollPerguntas[i].parentNode);
             return null;
         }
     }
